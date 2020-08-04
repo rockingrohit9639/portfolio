@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<br>
+<table class="table table-striped table-dark mb-0">
+  <thead>
+
+  	<h1 class="masthead-heading mb-0 bg-primary text-white text-center" style="padding: 50px;"> Add/Edit Posts</h1>
+    <h1 class="masthead-heading mb-0 text-primary mx-2 my-4">Basic Actions</h1>
+    <a href="/edit/0"><button class="btn btn-primary mx-2 mt-2">Add new post</button></a>
+    <a href="/dashboard"><button class="btn btn-primary mx-2 mt-2">Return Dashboard</button></a>
+    <a href="/logout"><button class="btn btn-primary mx-2 mt-2">LogOut</button></a>
+    <hr class="">
+    <form id="contact-form" name="contact-form" action="/edit/{{ sno }}" method="post">
+            <input type="text" id="title" name='title' class="form-control mb-4 mt-4" placeholder="Title" required value="{{ post.title }}">
+            <!-- <label for="title" class="">New Title</label> -->
+
+            <input type="text" id="slug" name='slug' placeholder="Slug" class="form-control mb-4" required value="{{post.slug}}">
+            <!-- <label for="slug" class="">New Slug</label> -->
+
+            <textarea type="text" id="content" name='content' rows="2" class="form-control md-textarea mb-4" placeholder="Content" required>{{ post.content }}</textarea>
+            <!-- <label for="content">New content</label> -->
+
+            <br>
+            <button class="btn btn-primary mb-4 mx-4" href="about.html">Submit</button>
+            
+        </form>
+</table>
+
+{% endblock %}

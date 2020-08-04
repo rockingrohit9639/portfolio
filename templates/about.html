@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<br>
+<br>
+
+<script type="text/javascript">
+    function done()
+    {
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var subject = document.getElementById('subject').value;
+        var message = document.getElementById('message').value;
+        if (name != "" && email != "" && subject != "" && message != "")
+        {
+            alert("Form submitted successfully.");
+        }
+        else
+        {
+            alert("Form fields cannot be empty. Please Fill them first.");
+        }
+    }
+</script>
+<section class="masthead bg-primary text-white text-center" id="about">
+            <div class="container">
+                <!-- About Section Heading-->
+                <div class="text-center">
+                    <h2 class="page-section-heading d-inline-block text-white">ABOUT - Rohit Saini</h2>
+                </div>
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- About Section Content-->
+                <img class="masthead-avatar mb-5" src="{{ url_for('static', filename='assets/img/avataaars.svg') }}" alt="image">
+                <div class="container text-center">
+                    <div class="container d-flex align-items-center flex-column">
+                        <p class="">Hey There, I am a student of BCA from I.T.S. Ghaziabad college. I have done C/C++, Python Programming Languages. I also know Front-End Languages like HTML, CSS. And I also know WordPress.I am an AI Enthusiast. I have also learned some Python modules like - Flask, Tkinter, and learning more day-to-day.I am a fast learner and well-focused person. Currently seeking for some Projects to apply my skills.</p>
+                    </div>
+                </div>
+            </div>
+</section>
+
+<section class="page-section" id="contact">
+<div class="text-center">
+    <h2 class="page-section-heading text-secondary d-inline-block mb-0">CONTACT</h2>
+</div>
+    <!-- Icon Divider-->
+    <div class="divider-custom">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+        <div class="divider-custom-line"></div>
+    </div>
+
+    <div class="align-items-center">
+        <p class="text-center w-responsive mx-auto mb-5">Do you have any questions?<br>Please do not hesitate to contact me directly.</p>
+
+        <form id="contact-form" name="contact-form" action="/about.html" method="POST">
+            <input type="text" id="name" name='name' class="form-control" placeholder="Your name" required width="10">
+            <label for="name" class="">Your name</label>
+
+            <input type="text" id="email" name='email' placeholder="Your mail" class="form-control" required>
+            <label for="email" class="">Your email</label>
+
+            <input type="text" id="subject" name='subject' placeholder="Subject" class="form-control" required>
+            <label for="subject" class="">Subject</label>
+
+            <textarea type="text" id="message" name='message' rows="2" class="form-control md-textarea" placeholder="Your Message" required></textarea>
+            <label for="message">Your message</label>
+
+            <br>
+            <button class="btn btn-primary" href="about.html", onclick="done()">Submit</button>
+            
+        </form>
+        
+    </div>
+
+    
+</section>
+{% endblock %}

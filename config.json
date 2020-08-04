@@ -1,0 +1,10 @@
+{
+  "params":
+  {
+    "local_server" : "True",
+    "local_uri" : "mysql://root:@localhost/portfolio",
+    "prod_uri" : "mysql://root:@localhost/portfolio",
+    "admin_user": "rohitsaini@admin",
+    "admin_pass" : "msdhoni@7"
+  }
+}

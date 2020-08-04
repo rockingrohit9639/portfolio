@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block body %}
+        <header class="masthead bg-primary text-white text-center">
+            <div class="container d-flex align-items-center flex-column">
+                <!-- Masthead Avatar Image-->
+                <img class="masthead-avatar mb-5" src="{{ url_for('static', filename='assets/img/avataaars.svg') }}" alt="image">
+                <!-- Masthead Heading-->
+                <h1 class="masthead-heading mb-0">ROHIT KUMAR SAINI</h1>
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- Masthead Subheading-->
+                <p class="pre-wrap masthead-subheading font-weight-light mb-0">AI Enthausiast - Python Developer - C/C++</p>
+            </div>
+        </header>
+        
+        
+
+
+
+        
+        
+        <section class="page-section" id="contact">
+            <div class="container">
+                <!-- Contact Section Heading-->
+                <div class="text-center">
+                    <h2 class="page-section-heading text-secondary d-inline-block mb-0">CONTACT</h2>
+                </div>
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- Contact Section Content-->
+                <div class="row justify-content-center">
+                    <div class="col-lg-4">
+                        <div class="d-flex flex-column align-items-center">
+                            <div class="icon-contact mb-3"><i class="fas fa-mobile-alt"></i></div>
+                            <div class="text-muted">Phone</div>
+                            <div class="lead font-weight-bold"><a href="#">+91 9639970146</a></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="d-flex flex-column align-items-center">
+                            <div class="icon-contact mb-3"><i class="far fa-envelope"></i></div>
+                            <div class="text-muted">Email</div>
+                            <a class="lead font-weight-bold" href="mailto:rohitbhatwara1@gmail.com">rohitbhatwara1@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}

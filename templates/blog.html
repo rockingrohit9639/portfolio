@@ -1,0 +1,38 @@
+{% extends "layout.html" %}	
+{% block body %}
+
+
+<br><br>
+<div class="container">
+
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+        <!-- Blog Post -->
+        <br>
+          <div class="card mb-4 border-0">
+          	<span class="border-0"></span>
+          	{% for post in posts %}
+            <!-- <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap"> -->
+              <div class="card-body">
+
+              <h2 class="card-title">{{ post.sno }}. {{ post.title }}</h2>
+              <p class="card-text"> {{ post.content }} </p>
+              </div> 
+              <div class="text-muted mb-4 mx-4">
+                Date & Time : {{ post.date }}
+              </div>
+              <a href="/blog.html/{{post.slug}}" class="btn btn-primary">Read More &rarr;</a>
+              <!-- <button class="btn btn-primary" href="/blog.html/{{post.slug}}" >Read More &rarr;</button> -->
+             
+
+           	{% endfor %}
+        <br>   	
+          </div>
+      </div>
+    </div>
+</div>
+
+{% endblock %}
