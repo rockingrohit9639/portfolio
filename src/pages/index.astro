@@ -1,11 +1,163 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+  <main class="max-w-2xl mx-auto px-6 py-16 md:py-24">
+
+    <!-- Hero -->
+    <section class="mb-20">
+      <h1 class="text-2xl font-semibold text-foreground mb-1">hi, i'm rohit.</h1>
+      <p class="text-muted mb-8">welcome to my small island on the web.</p>
+      <p class="text-foreground leading-relaxed">
+        i build software with nextjs, react, and node. and sometimes
+        i explain it to plants. they listen better than humans.
+      </p>
+    </section>
+
+    <!-- About -->
+    <section class="mb-16">
+      <h2 class="text-xs text-muted uppercase tracking-widest mb-5 border-b border-border pb-2">about</h2>
+      <div class="text-foreground leading-relaxed">
+        <p>
+          i started coding in 8th grade on a second-hand hcl computer, playing with simple html pages. even during my 12th boards, i kept learning c and c++. later, during my bca and the covid break, i discovered python, django, and eventually javascript, react, node.js, and various databases. now, i work as a full-stack developer at acemate.ai. i love sharing what i learn, contributing to open source, and connecting with other tech enthusiasts. my journey is driven by curiosity, constant learning, and the joy of turning ideas into real products.
+        </p>
+      </div>
+    </section>
+
+    <!-- Currently -->
+    <section class="mb-16">
+      <h2 class="text-xs text-muted uppercase tracking-widest mb-5 border-b border-border pb-2">currently</h2>
+      <ul class="space-y-2 text-foreground">
+        <li class="flex gap-3">
+          <span class="text-accent shrink-0">→</span>
+          <span>founding engineer at <a href="https://acemate.ai" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors underline underline-offset-4 decoration-border hover:decoration-accent">acemate.ai</a></span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-accent shrink-0">→</span>
+          <span>rebuilding this site with astro (you're looking at it)</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-accent shrink-0">→</span>
+          <span>picking up go. slowly.</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Experience -->
+    <section class="mb-16">
+      <h2 class="text-xs text-muted uppercase tracking-widest mb-5 border-b border-border pb-2">experience</h2>
+      <div class="space-y-8">
+        <div>
+          <div class="flex items-baseline justify-between gap-4 mb-1">
+            <a href="https://acemate.ai" target="_blank" rel="noopener noreferrer" class="text-foreground font-medium hover:text-accent transition-colors">acemate.ai</a>
+            <span class="text-muted text-xs shrink-0">oct 2025 – present</span>
+          </div>
+          <p class="text-accent text-xs mb-2">founding engineer</p>
+          <p class="text-muted leading-relaxed">building the product from scratch. full-stack work across the board.</p>
+        </div>
+        <div>
+          <div class="flex items-baseline justify-between gap-4 mb-1">
+            <a href="https://acemate.ai" target="_blank" rel="noopener noreferrer" class="text-foreground font-medium hover:text-accent transition-colors">acemate.ai</a>
+            <span class="text-muted text-xs shrink-0">jul 2025 – sep 2025</span>
+          </div>
+          <p class="text-accent text-xs mb-2">working student – full stack developer</p>
+        </div>
+        <div>
+          <div class="flex items-baseline justify-between gap-4 mb-1">
+            <a href="https://shelf.nu" target="_blank" rel="noopener noreferrer" class="text-foreground font-medium hover:text-accent transition-colors">shelf.nu</a>
+            <span class="text-muted text-xs shrink-0">open source</span>
+          </div>
+          <p class="text-accent text-xs mb-2">contributor</p>
+          <p class="text-muted leading-relaxed">i enhanced core modules like check-in/out workflows, asset validation, and booking export features. i improved the ui/ux with dynamic filters and quick actions, cutting task completion time by 35%. i also collaborated on 30+ pull requests with an international team while keeping the git history clean and easy to follow.</p>
+        </div>
+        <div>
+          <div class="flex items-baseline justify-between gap-4 mb-1">
+            <a href="https://prodioslabs.com/" target="_blank" rel="noopener noreferrer" class="text-foreground font-medium hover:text-accent transition-colors">prodioslabs</a>
+            <span class="text-muted text-xs shrink-0">aug 2022 – sep 2024</span>
+          </div>
+          <p class="text-accent text-xs mb-2">senior software developer</p>
+          <p class="text-muted leading-relaxed">i led the development of the uttarakhand state government portal, growing services from 15 to over 90 for more than 500k citizens. i designed scalable solutions that boosted system performance by 40% with 95% uptime, and increased digital engagement by 50% through core features and better ui/ux.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="mb-16">
+      <h2 class="text-xs text-muted uppercase tracking-widest mb-5 border-b border-border pb-2">projects</h2>
+      <div class="space-y-6">
+        <div>
+          <div class="flex items-baseline justify-between gap-4 mb-1">
+            <span class="text-foreground font-medium">echoes</span>
+            <span class="text-muted text-xs">ai · storytelling</span>
+          </div>
+          <p class="text-muted leading-relaxed">ai-powered interactive storytelling. you choose, it writes.</p>
+        </div>
+        <div>
+          <div class="flex items-baseline justify-between gap-4 mb-1">
+            <span class="text-foreground font-medium">mail bridge</span>
+            <span class="text-muted text-xs">email · integration</span>
+          </div>
+          <p class="text-muted leading-relaxed">email integration service that actually makes sense to configure.</p>
+        </div>
+        <div>
+          <div class="flex items-baseline justify-between gap-4 mb-1">
+            <span class="text-foreground font-medium">onesign</span>
+            <span class="text-muted text-xs">auth · sso</span>
+          </div>
+          <p class="text-muted leading-relaxed">single sign-on server. simple to self-host.</p>
+        </div>
+        <div>
+          <div class="flex items-baseline justify-between gap-4 mb-1">
+            <span class="text-foreground font-medium">form builder</span>
+            <span class="text-muted text-xs">ui · drag-and-drop</span>
+          </div>
+          <p class="text-muted leading-relaxed">drag-and-drop form builder. no-code, but not dumbed down.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="mb-16">
+      <h2 class="text-xs text-muted uppercase tracking-widest mb-5 border-b border-border pb-2">skills</h2>
+      <div class="space-y-2">
+        <div class="flex gap-4">
+          <span class="text-muted w-24 shrink-0">backend</span>
+          <span class="text-foreground">nestjs, hono, express, trpc</span>
+        </div>
+        <div class="flex gap-4">
+          <span class="text-muted w-24 shrink-0">frontend</span>
+          <span class="text-foreground">react, next.js, remix, tailwind</span>
+        </div>
+        <div class="flex gap-4">
+          <span class="text-muted w-24 shrink-0">languages</span>
+          <span class="text-foreground">typescript, python, go (learning)</span>
+        </div>
+        <div class="flex gap-4">
+          <span class="text-muted w-24 shrink-0">databases</span>
+          <span class="text-foreground">postgresql, mongodb</span>
+        </div>
+        <div class="flex gap-4">
+          <span class="text-muted w-24 shrink-0">ai</span>
+          <span class="text-foreground">openai, gemini, mcp</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Find me -->
+    <section class="mb-16">
+      <h2 class="text-xs text-muted uppercase tracking-widest mb-5 border-b border-border pb-2">find me</h2>
+      <nav class="flex flex-wrap gap-x-6 gap-y-2">
+        <a href="https://github.com/rockingrohit9639" target="_blank" rel="noopener noreferrer" class="text-foreground hover:text-accent transition-colors underline underline-offset-4 decoration-border hover:decoration-accent">github</a>
+        <a href="https://www.linkedin.com/in/rohit-kumar-saini/" target="_blank" rel="noopener noreferrer" class="text-foreground hover:text-accent transition-colors underline underline-offset-4 decoration-border hover:decoration-accent">linkedin</a>
+        <a href="mailto:rohitsaini.codes@gmail.com" target="_blank" rel="noopener noreferrer" class="text-foreground hover:text-accent transition-colors underline underline-offset-4 decoration-border hover:decoration-accent">email</a>
+      </nav>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-xs text-muted border-t border-border pt-6">
+      built with astro. no trackers.
+    </footer>
+
+  </main>
 </Layout>
