@@ -10,25 +10,14 @@ const links = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border">
-  <div class="max-w-3xl mx-auto px-6 h-11 flex items-center justify-between">
+<header class="site-header">
+  <div class="header-inner">
 
-    <!-- desktop nav -->
-    <nav class="hidden md:flex items-center gap-5 text-xs flex-1">
+    <nav class="nav-desktop">
       {links.map(({ label, href }) => (
-        <a
-          href={href}
-          class={`transition-colors duration-150 ${currentPath === href ? 'text-foreground' : 'text-muted hover:text-foreground'}`}
-        >
-          {label}
-        </a>
+        <a href={href} class={currentPath === href ? 'nav-link active' : 'nav-link'}>{label}</a>
       ))}
-      <a
-        href="https://github.com/rockingrohit9639"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-muted hover:text-foreground transition-colors duration-150 flex items-center gap-1"
-      >
+      <a href="https://github.com/rockingrohit9639" target="_blank" rel="noopener noreferrer" class="nav-link nav-link-external">
         github
         <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
@@ -36,47 +25,24 @@ const currentPath = Astro.url.pathname;
       </a>
     </nav>
 
-    <button
-      id="theme-toggle"
-      aria-label="Toggle theme"
-      class="text-xs text-muted hover:text-foreground transition-colors duration-150 cursor-pointer bg-transparent border-none p-0"
-    >
+    <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">
       <span id="theme-label">theme: dark</span>
     </button>
 
-    <!-- mobile hamburger -->
-    <button
-      id="menu-toggle"
-      aria-label="Toggle menu"
-      class="md:hidden flex flex-col gap-1.5 cursor-pointer bg-transparent border-none p-0"
-    >
-      <span class="menu-bar block w-4 h-px bg-muted transition-all duration-200"></span>
-      <span class="menu-bar block w-4 h-px bg-muted transition-all duration-200"></span>
-      <span class="menu-bar block w-4 h-px bg-muted transition-all duration-200"></span>
+    <button id="menu-toggle" class="menu-btn" aria-label="Toggle menu">
+      <span class="menu-bar"></span>
+      <span class="menu-bar"></span>
+      <span class="menu-bar"></span>
     </button>
 
   </div>
 
-  <!-- mobile menu -->
-  <div
-    id="mobile-menu"
-    class="hidden md:hidden border-t border-border bg-background"
-  >
-    <nav class="max-w-3xl mx-auto px-6 py-4 flex flex-col gap-3 text-sm">
+  <div id="mobile-menu" class="mobile-menu hidden">
+    <nav class="mobile-nav">
       {links.map(({ label, href }) => (
-        <a
-          href={href}
-          class={`transition-colors duration-150 ${currentPath === href ? 'text-foreground' : 'text-muted hover:text-foreground'}`}
-        >
-          {label}
-        </a>
+        <a href={href} class={currentPath === href ? 'nav-link active' : 'nav-link'}>{label}</a>
       ))}
-      <a
-        href="https://github.com/rockingrohit9639"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-muted hover:text-foreground transition-colors duration-150 flex items-center gap-1"
-      >
+      <a href="https://github.com/rockingrohit9639" target="_blank" rel="noopener noreferrer" class="nav-link nav-link-external">
         github
         <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
@@ -85,6 +51,112 @@ const currentPath = Astro.url.pathname;
     </nav>
   </div>
 </header>
+
+<style>
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: var(--background);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-inner {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 2.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .nav-desktop {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex: 1;
+  }
+
+  .nav-link {
+    font-size: 0.75rem;
+    color: var(--muted);
+    transition: color 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--foreground);
+  }
+
+  .theme-btn {
+    font-size: 0.75rem;
+    color: var(--muted);
+    background: none;
+    border: none;
+    padding: 0;
+    transition: color 0.15s;
+    white-space: nowrap;
+  }
+
+  .theme-btn:hover {
+    color: var(--foreground);
+  }
+
+  .menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 0.375rem;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  .menu-bar {
+    display: block;
+    width: 1rem;
+    height: 1px;
+    background: var(--muted);
+    transition: background 0.15s;
+  }
+
+  .mobile-menu {
+    border-top: 1px solid var(--border);
+    background: var(--background);
+  }
+
+  .mobile-menu.hidden {
+    display: none;
+  }
+
+  .mobile-nav {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .mobile-nav .nav-link {
+    font-size: 0.875rem;
+  }
+
+  @media (max-width: 768px) {
+    .nav-desktop {
+      display: none;
+    }
+    .menu-btn {
+      display: flex;
+    }
+  }
+</style>
 
 <script>
   const themeToggle = document.getElementById('theme-toggle');
@@ -112,7 +184,6 @@ const currentPath = Astro.url.pathname;
   });
 
   menuToggle?.addEventListener('click', () => {
-    const isOpen = !mobileMenu?.classList.contains('hidden');
-    mobileMenu?.classList.toggle('hidden', isOpen);
+    mobileMenu?.classList.toggle('hidden');
   });
 </script>

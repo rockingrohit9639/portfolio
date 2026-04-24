@@ -3,161 +3,316 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-  <main class="max-w-3xl mx-auto px-6 pt-24 pb-16 md:pb-24">
+  <main class="page-main">
 
-    <!-- Hero -->
-    <section class="mb-20">
-      <h1 class="text-2xl font-semibold text-foreground mb-1">hi, i'm rohit.</h1>
-      <p class="text-muted mb-8">welcome to my small island on the web.</p>
-      <p class="text-foreground leading-relaxed">
+    <section class="hero">
+      <h1>hi, i'm rohit.</h1>
+      <p class="subtitle">welcome to my small island on the web.</p>
+      <p>
         i build software with nextjs, react, and node. and sometimes
         i explain it to plants. they listen better than humans.
       </p>
     </section>
 
-    <!-- About -->
-    <section class="mb-16">
-      <h2 class="text-xs text-muted tracking-wide mb-5 border-b border-border pb-2">about</h2>
-      <div class="text-foreground leading-relaxed">
-        <p>
-          i started coding in 8th grade on a second-hand hcl computer, playing with simple html pages. even during my 12th boards, i kept learning c and c++. later, during my bca and the covid break, i discovered python, django, and eventually javascript, react, node.js, and various databases. now, i work as a full-stack developer at acemate.ai. i love sharing what i learn, contributing to open source, and connecting with other tech enthusiasts. my journey is driven by curiosity, constant learning, and the joy of turning ideas into real products.
-        </p>
-      </div>
+    <section class="section">
+      <h2 class="section-heading">about</h2>
+      <p>
+        i started coding in 8th grade on a second-hand hcl computer, playing with simple html pages. even during my 12th boards, i kept learning c and c++. later, during my bca and the covid break, i discovered python, django, and eventually javascript, react, node.js, and various databases. now, i work as a full-stack developer at acemate.ai. i love sharing what i learn, contributing to open source, and connecting with other tech enthusiasts. my journey is driven by curiosity, constant learning, and the joy of turning ideas into real products.
+      </p>
     </section>
 
-    <!-- Currently -->
-    <section class="mb-16">
-      <h2 class="text-xs text-muted tracking-wide mb-5 border-b border-border pb-2">currently</h2>
-      <ul class="space-y-2 text-foreground">
-        <li class="flex gap-3">
-          <span class="text-accent shrink-0">→</span>
-          <span>founding engineer at <a href="https://acemate.ai" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors underline underline-offset-4 decoration-border hover:decoration-accent">acemate.ai</a></span>
+    <section class="section">
+      <h2 class="section-heading">currently</h2>
+      <ul class="arrow-list">
+        <li>
+          <span class="arrow">→</span>
+          <span>founding engineer at <a href="https://acemate.ai" target="_blank" rel="noopener noreferrer" class="link">acemate.ai</a></span>
         </li>
-        <li class="flex gap-3">
-          <span class="text-accent shrink-0">→</span>
+        <li>
+          <span class="arrow">→</span>
           <span>rebuilding this site with astro (you're looking at it)</span>
         </li>
-        <li class="flex gap-3">
-          <span class="text-accent shrink-0">→</span>
+        <li>
+          <span class="arrow">→</span>
           <span>picking up go. slowly.</span>
         </li>
       </ul>
     </section>
 
-    <!-- Experience -->
-    <section class="mb-16">
-      <h2 class="text-xs text-muted tracking-wide mb-5 border-b border-border pb-2">experience</h2>
-      <div class="space-y-8">
-        <div>
-          <div class="flex items-baseline justify-between gap-4 mb-1">
-            <a href="https://acemate.ai" target="_blank" rel="noopener noreferrer" class="text-foreground font-medium hover:text-accent transition-colors">acemate.ai</a>
-            <span class="text-muted text-xs shrink-0">oct 2025 – present</span>
+    <section class="section">
+      <h2 class="section-heading">experience</h2>
+      <div class="exp-list">
+        <div class="exp-item">
+          <div class="exp-header">
+            <a href="https://acemate.ai" target="_blank" rel="noopener noreferrer" class="exp-company">acemate.ai</a>
+            <span class="exp-date">oct 2025 – present</span>
           </div>
-          <p class="text-accent text-xs mb-2">founding engineer</p>
-          <p class="text-muted leading-relaxed">building the product from scratch. full-stack work across the board.</p>
+          <p class="exp-role">founding engineer</p>
+          <p class="muted">building the product from scratch. full-stack work across the board.</p>
         </div>
-        <div>
-          <div class="flex items-baseline justify-between gap-4 mb-1">
-            <a href="https://acemate.ai" target="_blank" rel="noopener noreferrer" class="text-foreground font-medium hover:text-accent transition-colors">acemate.ai</a>
-            <span class="text-muted text-xs shrink-0">jul 2025 – sep 2025</span>
+        <div class="exp-item">
+          <div class="exp-header">
+            <a href="https://acemate.ai" target="_blank" rel="noopener noreferrer" class="exp-company">acemate.ai</a>
+            <span class="exp-date">jul 2025 – sep 2025</span>
           </div>
-          <p class="text-accent text-xs mb-2">working student – full stack developer</p>
+          <p class="exp-role">working student – full stack developer</p>
         </div>
-        <div>
-          <div class="flex items-baseline justify-between gap-4 mb-1">
-            <a href="https://shelf.nu" target="_blank" rel="noopener noreferrer" class="text-foreground font-medium hover:text-accent transition-colors">shelf.nu</a>
-            <span class="text-muted text-xs shrink-0">open source</span>
+        <div class="exp-item">
+          <div class="exp-header">
+            <a href="https://shelf.nu" target="_blank" rel="noopener noreferrer" class="exp-company">shelf.nu</a>
+            <span class="exp-date">open source</span>
           </div>
-          <p class="text-accent text-xs mb-2">contributor</p>
-          <p class="text-muted leading-relaxed">i enhanced core modules like check-in/out workflows, asset validation, and booking export features. i improved the ui/ux with dynamic filters and quick actions, cutting task completion time by 35%. i also collaborated on 30+ pull requests with an international team while keeping the git history clean and easy to follow.</p>
+          <p class="exp-role">contributor</p>
+          <p class="muted">i enhanced core modules like check-in/out workflows, asset validation, and booking export features. i improved the ui/ux with dynamic filters and quick actions, cutting task completion time by 35%. i also collaborated on 30+ pull requests with an international team while keeping the git history clean and easy to follow.</p>
         </div>
-        <div>
-          <div class="flex items-baseline justify-between gap-4 mb-1">
-            <a href="https://prodioslabs.com/" target="_blank" rel="noopener noreferrer" class="text-foreground font-medium hover:text-accent transition-colors">prodioslabs</a>
-            <span class="text-muted text-xs shrink-0">aug 2022 – sep 2024</span>
+        <div class="exp-item">
+          <div class="exp-header">
+            <a href="https://prodioslabs.com/" target="_blank" rel="noopener noreferrer" class="exp-company">prodioslabs</a>
+            <span class="exp-date">aug 2022 – sep 2024</span>
           </div>
-          <p class="text-accent text-xs mb-2">senior software developer</p>
-          <p class="text-muted leading-relaxed">i led the development of the uttarakhand state government portal, growing services from 15 to over 90 for more than 500k citizens. i designed scalable solutions that boosted system performance by 40% with 95% uptime, and increased digital engagement by 50% through core features and better ui/ux.</p>
+          <p class="exp-role">senior software developer</p>
+          <p class="muted">i led the development of the uttarakhand state government portal, growing services from 15 to over 90 for more than 500k citizens. i designed scalable solutions that boosted system performance by 40% with 95% uptime, and increased digital engagement by 50% through core features and better ui/ux.</p>
         </div>
       </div>
     </section>
 
-    <!-- Projects -->
-    <section class="mb-16">
-      <h2 class="text-xs text-muted tracking-wide mb-5 border-b border-border pb-2">projects</h2>
-      <div class="space-y-6">
-        <div>
-          <div class="flex items-baseline justify-between gap-4 mb-1">
-            <span class="text-foreground font-medium">echoes</span>
-            <span class="text-muted text-xs">ai · storytelling</span>
+    <section class="section">
+      <h2 class="section-heading">projects</h2>
+      <div class="project-list">
+        <div class="project-item">
+          <div class="project-header">
+            <span class="project-name">echoes</span>
+            <span class="muted small">ai · storytelling</span>
           </div>
-          <p class="text-muted leading-relaxed">ai-powered interactive storytelling. you choose, it writes.</p>
+          <p class="muted">ai-powered interactive storytelling. you choose, it writes.</p>
         </div>
-        <div>
-          <div class="flex items-baseline justify-between gap-4 mb-1">
-            <span class="text-foreground font-medium">mail bridge</span>
-            <span class="text-muted text-xs">email · integration</span>
+        <div class="project-item">
+          <div class="project-header">
+            <span class="project-name">mail bridge</span>
+            <span class="muted small">email · integration</span>
           </div>
-          <p class="text-muted leading-relaxed">email integration service that actually makes sense to configure.</p>
+          <p class="muted">email integration service that actually makes sense to configure.</p>
         </div>
-        <div>
-          <div class="flex items-baseline justify-between gap-4 mb-1">
-            <span class="text-foreground font-medium">onesign</span>
-            <span class="text-muted text-xs">auth · sso</span>
+        <div class="project-item">
+          <div class="project-header">
+            <span class="project-name">onesign</span>
+            <span class="muted small">auth · sso</span>
           </div>
-          <p class="text-muted leading-relaxed">single sign-on server. simple to self-host.</p>
+          <p class="muted">single sign-on server. simple to self-host.</p>
         </div>
-        <div>
-          <div class="flex items-baseline justify-between gap-4 mb-1">
-            <span class="text-foreground font-medium">form builder</span>
-            <span class="text-muted text-xs">ui · drag-and-drop</span>
+        <div class="project-item">
+          <div class="project-header">
+            <span class="project-name">form builder</span>
+            <span class="muted small">ui · drag-and-drop</span>
           </div>
-          <p class="text-muted leading-relaxed">drag-and-drop form builder. no-code, but not dumbed down.</p>
+          <p class="muted">drag-and-drop form builder. no-code, but not dumbed down.</p>
         </div>
       </div>
     </section>
 
-    <!-- Skills -->
-    <section class="mb-16">
-      <h2 class="text-xs text-muted tracking-wide mb-5 border-b border-border pb-2">skills</h2>
-      <div class="space-y-2">
-        <div class="flex gap-4">
-          <span class="text-muted w-24 shrink-0">backend</span>
-          <span class="text-foreground">nestjs, hono, express, trpc</span>
+    <section class="section">
+      <h2 class="section-heading">skills</h2>
+      <div class="skills-list">
+        <div class="skill-row">
+          <span class="muted skill-label">backend</span>
+          <span>nestjs, hono, express, trpc</span>
         </div>
-        <div class="flex gap-4">
-          <span class="text-muted w-24 shrink-0">frontend</span>
-          <span class="text-foreground">react, next.js, remix, tailwind</span>
+        <div class="skill-row">
+          <span class="muted skill-label">frontend</span>
+          <span>react, next.js, remix, tailwind</span>
         </div>
-        <div class="flex gap-4">
-          <span class="text-muted w-24 shrink-0">languages</span>
-          <span class="text-foreground">typescript, python, go (learning)</span>
+        <div class="skill-row">
+          <span class="muted skill-label">languages</span>
+          <span>typescript, python, go (learning)</span>
         </div>
-        <div class="flex gap-4">
-          <span class="text-muted w-24 shrink-0">databases</span>
-          <span class="text-foreground">postgresql, mongodb</span>
+        <div class="skill-row">
+          <span class="muted skill-label">databases</span>
+          <span>postgresql, mongodb</span>
         </div>
-        <div class="flex gap-4">
-          <span class="text-muted w-24 shrink-0">ai</span>
-          <span class="text-foreground">openai, gemini, mcp</span>
+        <div class="skill-row">
+          <span class="muted skill-label">ai</span>
+          <span>openai, gemini, mcp</span>
         </div>
       </div>
     </section>
 
-    <!-- Find me -->
-    <section class="mb-16">
-      <h2 class="text-xs text-muted tracking-wide mb-5 border-b border-border pb-2">find me</h2>
-      <nav class="flex flex-wrap gap-x-6 gap-y-2">
-        <a href="https://github.com/rockingrohit9639" target="_blank" rel="noopener noreferrer" class="text-foreground hover:text-accent transition-colors underline underline-offset-4 decoration-border hover:decoration-accent">github</a>
-        <a href="https://www.linkedin.com/in/rohit-kumar-saini/" target="_blank" rel="noopener noreferrer" class="text-foreground hover:text-accent transition-colors underline underline-offset-4 decoration-border hover:decoration-accent">linkedin</a>
-        <a href="mailto:rohitsaini.codes@gmail.com" target="_blank" rel="noopener noreferrer" class="text-foreground hover:text-accent transition-colors underline underline-offset-4 decoration-border hover:decoration-accent">email</a>
+    <section class="section">
+      <h2 class="section-heading">find me</h2>
+      <nav class="find-me">
+        <a href="https://github.com/rockingrohit9639" target="_blank" rel="noopener noreferrer" class="link">github</a>
+        <a href="https://www.linkedin.com/in/rohit-kumar-saini/" target="_blank" rel="noopener noreferrer" class="link">linkedin</a>
+        <a href="mailto:rohitsaini.codes@gmail.com" target="_blank" rel="noopener noreferrer" class="link">email</a>
       </nav>
     </section>
 
-    <!-- Footer -->
-    <footer class="text-xs text-muted border-t border-border pt-6">
+    <footer class="site-footer">
       built with astro. no trackers.
     </footer>
 
   </main>
 </Layout>
+
+<style>
+  .page-main {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 6rem 1.5rem 4rem;
+  }
+
+  /* Hero */
+  .hero {
+    margin-bottom: 4rem;
+  }
+
+  .hero h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  .hero .subtitle {
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
+
+  /* Sections */
+  .section {
+    margin-bottom: 3.5rem;
+  }
+
+  .section-heading {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  /* Arrow list */
+  .arrow-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .arrow-list li {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .arrow {
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* Experience */
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .exp-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .exp-company {
+    font-weight: 500;
+    transition: color 0.15s;
+  }
+
+  .exp-company:hover {
+    color: var(--accent);
+  }
+
+  .exp-date {
+    font-size: 0.75rem;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  .exp-role {
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  /* Projects */
+  .project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .project-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .project-name {
+    font-weight: 500;
+  }
+
+  /* Skills */
+  .skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .skill-row {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .skill-label {
+    width: 6rem;
+    flex-shrink: 0;
+  }
+
+  /* Find me */
+  .find-me {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+  }
+
+  /* Footer */
+  .site-footer {
+    font-size: 0.75rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+  }
+
+  /* Shared */
+  .muted {
+    color: var(--muted);
+  }
+
+  .small {
+    font-size: 0.75rem;
+  }
+
+  .link {
+    color: var(--foreground);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--border);
+    transition: color 0.15s, text-decoration-color 0.15s;
+  }
+
+  .link:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+  }
+</style>

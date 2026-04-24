@@ -1,15 +1,4 @@
-@import "tailwindcss";
-
-@theme inline {
-  --font-mono: var(--font-ibm-plex-mono);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-muted: var(--muted);
-  --color-border: var(--border);
-  --color-code-background: var(--code-background);
-  --color-accent: var(--accent);
-}
-
+/* ── Theme tokens ── */
 :root {
   --background: oklch(98% 0.01 95);
   --foreground: oklch(20% 0.01 95);
@@ -17,6 +6,7 @@
   --border: oklch(88% 0.01 95);
   --code-background: oklch(94% 0.01 95);
   --accent: oklch(52% 0.14 35);
+  --font-mono: 'IBM Plex Mono', monospace;
 }
 
 [data-theme="dark"] {
@@ -28,18 +18,40 @@
   --accent: oklch(68% 0.14 35);
 }
 
-@layer base {
-  * {
-    @apply font-mono;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-  }
-
-  ::selection {
-    background-color: oklch(from var(--accent) l c h / 0.15);
-    color: var(--foreground);
-  }
+/* ── Reset & base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+html {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  line-height: 1.6;
+}
+
+::selection {
+  background-color: oklch(from var(--accent) l c h / 0.15);
+  color: var(--foreground);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+ul, ol {
+  list-style: none;
+}
