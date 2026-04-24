@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css'
+import ThemeToggle from '../components/ThemeToggle.astro'
 ---
 
 <!doctype html>
@@ -14,8 +15,20 @@ import '../styles/global.css'
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+		
+		<!-- Prevent flash of wrong theme -->
+		<script is:inline>
+			(function () {
+				const stored = localStorage.getItem('theme');
+				const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+				document.documentElement.setAttribute('data-theme', stored ?? preferred);
+			})();
+		</script>
 	</head>
 	<body class="m-0 w-full h-full" style="--font-ibm-plex-mono: 'IBM Plex Mono', monospace;">
+		<div class="fixed top-4 right-4 z-50 text-sm">
+			<ThemeToggle />
+		</div>
 		<slot />
 	</body>
 </html>
