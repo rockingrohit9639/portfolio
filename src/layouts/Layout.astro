@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css'
-import ThemeToggle from '../components/ThemeToggle.astro'
+import Nav from '../components/Nav.astro'
 ---
 
 <!doctype html>
@@ -41,9 +41,7 @@ import ThemeToggle from '../components/ThemeToggle.astro'
     </script>
   </head>
   <body style="--font-ibm-plex-mono: 'IBM Plex Mono', monospace;">
-    <div class="fixed top-5 right-5 z-50 text-xs">
-      <ThemeToggle />
-    </div>
+    <Nav />
     <slot />
   </body>
 </html>

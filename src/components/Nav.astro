@@ -1,0 +1,119 @@
+---
+const links = [
+  { label: 'home', href: '/' },
+  { label: 'blog', href: '/blog' },
+  { label: 'gallery', href: '/gallery' },
+  { label: 'thoughts', href: '/thoughts' },
+  { label: 'bookmarks', href: '/bookmarks' },
+  { label: 'snippets', href: '/snippets' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border">
+  <div class="max-w-3xl mx-auto px-6 h-11 flex items-center justify-between">
+
+    <!-- desktop nav -->
+    <nav class="hidden md:flex items-center gap-5 text-xs flex-1">
+      {links.map(({ label, href }) => (
+        <a
+          href={href}
+          class={`transition-colors duration-150 ${currentPath === href ? 'text-foreground' : 'text-muted hover:text-foreground'}`}
+        >
+          {label}
+        </a>
+      ))}
+      <a
+        href="https://github.com/rockingrohit9639"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-muted hover:text-foreground transition-colors duration-150 flex items-center gap-1"
+      >
+        github
+        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        </svg>
+      </a>
+    </nav>
+
+    <button
+      id="theme-toggle"
+      aria-label="Toggle theme"
+      class="text-xs text-muted hover:text-foreground transition-colors duration-150 cursor-pointer bg-transparent border-none p-0"
+    >
+      <span id="theme-label">theme: dark</span>
+    </button>
+
+    <!-- mobile hamburger -->
+    <button
+      id="menu-toggle"
+      aria-label="Toggle menu"
+      class="md:hidden flex flex-col gap-1.5 cursor-pointer bg-transparent border-none p-0"
+    >
+      <span class="menu-bar block w-4 h-px bg-muted transition-all duration-200"></span>
+      <span class="menu-bar block w-4 h-px bg-muted transition-all duration-200"></span>
+      <span class="menu-bar block w-4 h-px bg-muted transition-all duration-200"></span>
+    </button>
+
+  </div>
+
+  <!-- mobile menu -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden border-t border-border bg-background"
+  >
+    <nav class="max-w-3xl mx-auto px-6 py-4 flex flex-col gap-3 text-sm">
+      {links.map(({ label, href }) => (
+        <a
+          href={href}
+          class={`transition-colors duration-150 ${currentPath === href ? 'text-foreground' : 'text-muted hover:text-foreground'}`}
+        >
+          {label}
+        </a>
+      ))}
+      <a
+        href="https://github.com/rockingrohit9639"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-muted hover:text-foreground transition-colors duration-150 flex items-center gap-1"
+      >
+        github
+        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        </svg>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const themeToggle = document.getElementById('theme-toggle');
+  const themeLabel = document.getElementById('theme-label');
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  function getTheme(): string {
+    return localStorage.getItem('theme') ?? (
+      window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    );
+  }
+
+  function applyTheme(theme: string) {
+    document.documentElement.setAttribute('data-theme', theme);
+    if (themeLabel) themeLabel.textContent = `theme: ${theme}`;
+    localStorage.setItem('theme', theme);
+  }
+
+  applyTheme(getTheme());
+
+  themeToggle?.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme') ?? 'light';
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+  });
+
+  menuToggle?.addEventListener('click', () => {
+    const isOpen = !mobileMenu?.classList.contains('hidden');
+    mobileMenu?.classList.toggle('hidden', isOpen);
+  });
+</script>
