@@ -1,0 +1,152 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+const all = await getCollection('thoughts');
+const thoughts = all.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const types = ['all', 'thought', 'note', 'idea', 'quote'] as const;
+
+const typeSymbol: Record<string, string> = {
+  thought: '~',
+  note: '#',
+  idea: '*',
+  quote: '"',
+};
+---
+
+<Layout>
+  <main class="max-w-3xl mx-auto px-6 pt-24 pb-24">
+
+    <!-- Header -->
+    <div class="mb-10">
+      <span class="text-accent text-xs block mb-4">~/thoughts</span>
+      <h1 class="text-2xl font-semibold text-foreground mb-2">thoughts.</h1>
+      <p class="text-muted text-sm">a scratchpad. random thoughts, notes, ideas, and the occasional quote worth keeping.</p>
+    </div>
+
+    <!-- Filter bar -->
+    <div class="mb-10" id="filters">
+      <div class="flex items-center gap-2 flex-wrap">
+        {types.map((t, i) => (
+          <button
+            data-filter={t}
+            data-active={i === 0 ? 'true' : 'false'}
+            class="filter-btn"
+          >
+            {t}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Entries -->
+    <div id="thoughts-list" class="border-t border-border">
+      {thoughts.map(async (entry, i) => {
+        const { Content } = await render(entry);
+        const sym = typeSymbol[entry.data.type] ?? '·';
+        const dateStr = entry.data.date
+          .toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
+          .toLowerCase();
+        return (
+          <article
+            data-type={entry.data.type}
+            class="thought-entry border-b border-border"
+            style={`animation-delay: ${i * 60}ms`}
+          >
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="text-accent font-medium shrink-0">{sym}</span>
+                <span class="text-accent text-xs tracking-wide">{entry.data.type}</span>
+              </div>
+              <span class="text-muted text-xs">{dateStr}</span>
+            </div>
+            <div class="text-foreground leading-relaxed thought-content">
+              <Content />
+            </div>
+          </article>
+        );
+      })}
+    </div>
+
+    <!-- Empty state -->
+    <div id="empty-state" class="hidden">
+      <p class="text-muted text-sm">no entries of this type yet.</p>
+    </div>
+
+  </main>
+</Layout>
+
+<style>
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .thought-entry {
+    animation: fade-up 0.3s ease both;
+    padding-top: 2rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .thought-entry > div:first-child {
+    margin-bottom: 1.25rem;
+  }
+
+  .thought-content :global(p) {
+    margin: 0;
+  }
+
+  /* Filter buttons — all styling here, no dynamic Tailwind classes */
+  .filter-btn {
+    font-family: inherit;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    padding: 0.375rem 0.875rem;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: transparent;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--foreground);
+    color: var(--foreground);
+  }
+
+  .filter-btn[data-active="true"] {
+    border-color: var(--foreground);
+    color: var(--foreground);
+  }
+
+  #empty-state {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    text-align: center;
+  }
+</style>
+
+<script>
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const entries = document.querySelectorAll<HTMLElement>('.thought-entry');
+  const emptyState = document.getElementById('empty-state');
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+
+      filterBtns.forEach((b) => b.dataset.active = 'false');
+      btn.dataset.active = 'true';
+
+      let visible = 0;
+      entries.forEach((entry) => {
+        const show = filter === 'all' || entry.dataset.type === filter;
+        entry.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+
+      if (emptyState) emptyState.classList.toggle('hidden', visible > 0);
+    });
+  });
+</script>
