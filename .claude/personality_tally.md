@@ -1,0 +1,4 @@
+# Style Tally
+
+| Rule | Count |
+|------|-------|
