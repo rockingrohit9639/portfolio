@@ -4,31 +4,31 @@ import ThemeToggle from '../components/ThemeToggle.astro'
 ---
 
 <!doctype html>
-<html lang="en" class="h-full">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
-		
-		<!-- Prevent flash of wrong theme -->
-		<script is:inline>
-			(function () {
-				const stored = localStorage.getItem('theme');
-				const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-				document.documentElement.setAttribute('data-theme', stored ?? preferred);
-			})();
-		</script>
-	</head>
-	<body class="m-0 w-full h-full" style="--font-ibm-plex-mono: 'IBM Plex Mono', monospace;">
-		<div class="fixed top-4 right-4 z-50 text-sm">
-			<ThemeToggle />
-		</div>
-		<slot />
-	</body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Rohit Kumar Saini — Software Engineer</title>
+    <meta name="description" content="Software engineer who figures things out. Open to collaborations, freelance work, and interesting problems." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Prevent flash of wrong theme -->
+    <script is:inline>
+      (function () {
+        const stored = localStorage.getItem('theme');
+        const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', stored ?? preferred);
+      })();
+    </script>
+  </head>
+  <body style="--font-ibm-plex-mono: 'IBM Plex Mono', monospace;">
+    <div class="fixed top-5 right-5 z-50 text-xs">
+      <ThemeToggle />
+    </div>
+    <slot />
+  </body>
 </html>
