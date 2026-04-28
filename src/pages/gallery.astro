@@ -1,0 +1,190 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+
+const imageFiles = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/gallery/*.{jpg,jpeg,png,webp,avif}',
+  { eager: true }
+);
+
+const galleryMeta: Record<string, { tags: string[] }> = {
+  'mountains.jpg':   { tags: ['nature', 'landscape'] },
+  'forest.jpg':      { tags: ['nature', 'forest'] },
+  'city-lights.jpg': { tags: ['urban', 'night'] },
+  'forest-path.jpg': { tags: ['nature', 'forest'] },
+  'foggy-hills.jpg': { tags: ['nature', 'landscape'] },
+  'coastal.jpg':     { tags: ['nature', 'landscape'] },
+  'desert.jpg':      { tags: ['nature', 'landscape'] },
+};
+
+const images = Object.entries(imageFiles).map(([path, mod]) => {
+  const filename = path.split('/').pop()!;
+  const meta = galleryMeta[filename] ?? { tags: [] };
+  return { src: mod.default, tags: meta.tags };
+});
+
+const allTags = ['all', ...Array.from(new Set(images.flatMap((i) => i.tags))).sort()];
+---
+
+<Layout>
+  <main class="gallery-main">
+
+    <div class="gallery-header">
+      <span class="breadcrumb">~/gallery</span>
+      <h1>gallery.</h1>
+      <p class="subtitle">things i've seen and liked.</p>
+    </div>
+
+    {images.length === 0 ? (
+      <p class="empty">nothing here yet.</p>
+    ) : (
+      <>
+        <div class="filter-bar">
+          {allTags.map((tag) => (
+            <button class="filter-btn" data-tag={tag} data-active={tag === 'all' ? 'true' : undefined}>
+              {tag}
+            </button>
+          ))}
+        </div>
+
+        <div class="masonry">
+          {images.map((img) => (
+            <div class="masonry-item" data-tags={img.tags.join(',')}>
+              <Image src={img.src} alt="" loading="lazy" />
+            </div>
+          ))}
+        </div>
+      </>
+    )}
+
+  </main>
+</Layout>
+
+<style>
+  .gallery-main {
+    max-width: 64rem;
+    margin: 0 auto;
+    padding: 6rem 1.5rem 6rem;
+  }
+
+  .gallery-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .breadcrumb {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .gallery-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+
+  .empty {
+    font-size: 0.875rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+  }
+
+  /* Filters */
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+  }
+
+  .filter-btn {
+    font-family: inherit;
+    font-size: 0.75rem;
+    padding: 0.375rem 0.875rem;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: transparent;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--foreground);
+    color: var(--foreground);
+  }
+
+  .filter-btn[data-active="true"] {
+    border-color: var(--foreground);
+    color: var(--foreground);
+  }
+
+  /* Masonry */
+  .masonry {
+    columns: 3;
+    column-gap: 0.75rem;
+  }
+
+  .masonry-item {
+    break-inside: avoid;
+    margin-bottom: 0.75rem;
+  }
+
+  .masonry-item img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    filter: grayscale(20%);
+    transition: filter 0.2s, opacity 0.2s;
+  }
+
+  .masonry-item:hover img {
+    filter: grayscale(0%);
+  }
+
+  .masonry-item.hidden {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .masonry {
+      columns: 2;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .masonry {
+      columns: 1;
+    }
+  }
+</style>
+
+<script>
+  const btns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const items = document.querySelectorAll<HTMLElement>('.masonry-item');
+
+  btns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      btns.forEach((b) => b.removeAttribute('data-active'));
+      btn.setAttribute('data-active', 'true');
+
+      const tag = btn.dataset.tag!;
+      items.forEach((item) => {
+        const tags = item.dataset.tags?.split(',') ?? [];
+        if (tag === 'all' || tags.includes(tag)) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>
