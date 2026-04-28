@@ -11,4 +11,24 @@ const thoughts = defineCollection({
   }),
 });
 
-export const collections = { thoughts };
+const bookmarks = defineCollection({
+  loader: glob({ pattern: "**/*.json", base: "./src/content/bookmarks" }),
+  schema: z.object({
+    title: z.string(),
+    url: z.string().url(),
+    description: z.string().optional(),
+    category: z.enum(["tools", "design", "articles", "misc"]),
+    date: z.coerce.date(),
+  }),
+});
+
+const snippets = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/snippets" }),
+  schema: z.object({
+    title: z.string(),
+    language: z.string(),
+    date: z.coerce.date(),
+  }),
+});
+
+export const collections = { thoughts, bookmarks, snippets };

@@ -1,0 +1,8 @@
+{
+  "$schema": "../../../.astro/collections/bookmarks.schema.json",
+  "title": "excalidraw",
+  "url": "https://excalidraw.com",
+  "description": "virtual whiteboard for sketching diagrams. hand-drawn feel, surprisingly polished.",
+  "category": "tools",
+  "date": "2024-06-01T00:00:00.000Z"
+}

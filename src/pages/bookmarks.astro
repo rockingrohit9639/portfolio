@@ -1,0 +1,203 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+const all = await getCollection('bookmarks');
+const bookmarks = all.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const categories = ['all', 'tools', 'design', 'articles', 'misc'] as const;
+---
+
+<Layout>
+  <main class="bookmarks-main">
+
+    <div class="bookmarks-header">
+      <span class="breadcrumb">~/bookmarks</span>
+      <h1>bookmarks.</h1>
+      <p class="subtitle">things i've found useful, interesting, or worth revisiting.</p>
+    </div>
+
+    <div class="filters" id="filters">
+      {categories.map((c, i) => (
+        <button
+          data-filter={c}
+          data-active={i === 0 ? 'true' : 'false'}
+          class="filter-btn"
+        >
+          {c}
+        </button>
+      ))}
+    </div>
+
+    <div class="bookmark-list" id="bookmark-list">
+      {bookmarks.map((entry) => (
+        <a
+          href={entry.data.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-category={entry.data.category}
+          class="bookmark-item"
+        >
+          <div class="bookmark-top">
+            <span class="bookmark-title">{entry.data.title}</span>
+            <span class="bookmark-category">{entry.data.category}</span>
+          </div>
+          {entry.data.description && (
+            <p class="bookmark-desc">{entry.data.description}</p>
+          )}
+          <span class="bookmark-url">{new URL(entry.data.url).hostname}</span>
+        </a>
+      ))}
+    </div>
+
+    <div id="empty-state" class="empty-state hidden">
+      <p>no bookmarks in this category yet.</p>
+    </div>
+
+  </main>
+</Layout>
+
+<style>
+  .bookmarks-main {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 6rem 1.5rem 6rem;
+  }
+
+  .bookmarks-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .breadcrumb {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .bookmarks-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+
+  /* Filters */
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .filter-btn {
+    font-family: inherit;
+    font-size: 0.75rem;
+    padding: 0.375rem 0.875rem;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: transparent;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--foreground);
+    color: var(--foreground);
+  }
+
+  .filter-btn[data-active="true"] {
+    border-color: var(--foreground);
+    color: var(--foreground);
+  }
+
+  /* Bookmark list */
+  .bookmark-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--border);
+  }
+
+  .bookmark-item {
+    display: block;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+
+  .bookmark-item:hover {
+    opacity: 0.75;
+  }
+
+  .bookmark-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.375rem;
+  }
+
+  .bookmark-title {
+    font-weight: 500;
+    color: var(--foreground);
+  }
+
+  .bookmark-category {
+    font-size: 0.75rem;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .bookmark-desc {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 0.375rem;
+  }
+
+  .bookmark-url {
+    font-size: 0.75rem;
+    color: var(--border);
+  }
+
+  /* Empty state */
+  .empty-state {
+    padding: 4rem 0;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.875rem;
+  }
+
+  .empty-state.hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const items = document.querySelectorAll<HTMLElement>('.bookmark-item');
+  const emptyState = document.getElementById('empty-state');
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+
+      filterBtns.forEach((b) => b.dataset.active = 'false');
+      btn.dataset.active = 'true';
+
+      let visible = 0;
+      items.forEach((item) => {
+        const show = filter === 'all' || item.dataset.category === filter;
+        item.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+
+      if (emptyState) emptyState.classList.toggle('hidden', visible > 0);
+    });
+  });
+</script>

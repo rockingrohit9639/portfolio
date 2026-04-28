@@ -1,0 +1,161 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+const all = await getCollection('snippets');
+const snippets = all.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Layout>
+  <main class="snippets-main">
+
+    <div class="snippets-header">
+      <span class="breadcrumb">~/snippets</span>
+      <h1>snippets.</h1>
+      <p class="subtitle">small pieces of code i keep coming back to.</p>
+    </div>
+
+    <div class="snippet-list">
+      {snippets.map(async (entry) => {
+        const { Content } = await render(entry);
+        return (
+          <article class="snippet-entry">
+            <div class="snippet-meta">
+              <span class="snippet-title">{entry.data.title}</span>
+              <div class="snippet-actions">
+                <span class="snippet-lang">{entry.data.language}</span>
+                <button class="copy-btn" aria-label="copy code">copy</button>
+              </div>
+            </div>
+            <div class="snippet-code">
+              <Content />
+            </div>
+          </article>
+        );
+      })}
+    </div>
+
+  </main>
+</Layout>
+
+<style>
+  .snippets-main {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 6rem 1.5rem 6rem;
+  }
+
+  .snippets-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .breadcrumb {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .snippets-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+
+  /* Snippet list */
+  .snippet-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--border);
+  }
+
+  .snippet-entry {
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .snippet-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .snippet-title {
+    font-weight: 500;
+  }
+
+  .snippet-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .snippet-lang {
+    font-size: 0.75rem;
+    color: var(--accent);
+  }
+
+  .copy-btn {
+    font-family: inherit;
+    font-size: 0.75rem;
+    color: var(--muted);
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: color 0.15s;
+    opacity: 0.5;
+  }
+
+  .copy-btn:hover {
+    color: var(--foreground);
+    opacity: 1;
+  }
+
+  .copy-btn.copied {
+    color: var(--accent);
+    opacity: 1;
+  }
+
+  /* Code block overrides */
+  .snippet-code :global(pre) {
+    background: var(--code-background) !important;
+    border: 1px solid var(--border);
+    padding: 1.25rem;
+    overflow-x: auto;
+    font-size: 0.8125rem;
+    line-height: 1.7;
+  }
+
+  .snippet-code :global(code) {
+    font-family: var(--font-mono);
+  }
+
+  .snippet-code :global(p) {
+    margin: 0;
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.copy-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const code = btn.closest('.snippet-entry')?.querySelector('pre')?.innerText ?? '';
+      const ok = await navigator.clipboard.writeText(code).then(() => true).catch(() => false);
+      if (ok) {
+        btn.textContent = 'copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      }
+    });
+  });
+</script>
