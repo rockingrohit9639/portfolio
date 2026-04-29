@@ -30,7 +30,6 @@ const allTags = ['all', ...Array.from(new Set(images.flatMap((i) => i.tags))).so
   <main class="gallery-main">
 
     <div class="gallery-header">
-      <span class="breadcrumb">~/gallery</span>
       <h1>gallery.</h1>
       <p class="subtitle">things i've seen and liked.</p>
     </div>
@@ -62,7 +61,7 @@ const allTags = ['all', ...Array.from(new Set(images.flatMap((i) => i.tags))).so
 
 <style>
   .gallery-main {
-    max-width: 64rem;
+    max-width: 48rem;
     margin: 0 auto;
     padding: 6rem 1.5rem 6rem;
   }
@@ -71,12 +70,6 @@ const allTags = ['all', ...Array.from(new Set(images.flatMap((i) => i.tags))).so
     margin-bottom: 2.5rem;
   }
 
-  .breadcrumb {
-    display: block;
-    font-size: 0.75rem;
-    color: var(--accent);
-    margin-bottom: 1rem;
-  }
 
   .gallery-header h1 {
     font-size: 1.5rem;
