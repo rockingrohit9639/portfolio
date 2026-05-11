@@ -7,23 +7,16 @@ const imageFiles = import.meta.glob<{ default: ImageMetadata }>(
   { eager: true }
 );
 
-const galleryMeta: Record<string, { tags: string[] }> = {
-  'mountains.jpg':   { tags: ['nature', 'landscape'] },
-  'forest.jpg':      { tags: ['nature', 'forest'] },
-  'city-lights.jpg': { tags: ['urban', 'night'] },
-  'forest-path.jpg': { tags: ['nature', 'forest'] },
-  'foggy-hills.jpg': { tags: ['nature', 'landscape'] },
-  'coastal.jpg':     { tags: ['nature', 'landscape'] },
-  'desert.jpg':      { tags: ['nature', 'landscape'] },
-};
+const fixedTags = ['nature', 'urban', 'abstract', 'misc'] as const;
 
 const images = Object.entries(imageFiles).map(([path, mod]) => {
   const filename = path.split('/').pop()!;
-  const meta = galleryMeta[filename] ?? { tags: [] };
-  return { src: mod.default, tags: meta.tags };
+  const parts = filename.replace(/\.[^.]+$/, '').split('-');
+  const tags = parts.filter((p) => (fixedTags as readonly string[]).includes(p));
+  return { src: mod.default, tags: tags.length > 0 ? tags : ['misc'] };
 });
 
-const allTags = ['all', ...Array.from(new Set(images.flatMap((i) => i.tags))).sort()];
+const allTags = ['all', ...fixedTags];
 ---
 
 <Layout>
@@ -133,6 +126,7 @@ const allTags = ['all', ...Array.from(new Set(images.flatMap((i) => i.tags))).so
 
   .masonry-item img {
     width: 100%;
+    max-height: 28rem;
     display: block;
     object-fit: cover;
     filter: grayscale(20%);
