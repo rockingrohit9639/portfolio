@@ -1,0 +1,7 @@
+{
+	"$schema": "../../../.astro/collections/bookmarks.schema.json",
+	"title": "effect institute",
+	"url": "https://www.effect.institute/chapters",
+	"category": "articles",
+	"date": "2026-05-11T00:00:00.000Z"
+}

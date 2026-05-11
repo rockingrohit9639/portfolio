@@ -37,14 +37,11 @@ const categories = ['all', 'tools', 'design', 'articles', 'misc'] as const;
           data-category={entry.data.category}
           class="bookmark-item"
         >
-          <div class="bookmark-top">
-            <span class="bookmark-title">{entry.data.title}</span>
+          <span class="bookmark-title">{entry.data.title}</span>
+          <span class="bookmark-meta">
+            <span class="bookmark-url">{new URL(entry.data.url).hostname}</span>
             <span class="bookmark-category">{entry.data.category}</span>
-          </div>
-          {entry.data.description && (
-            <p class="bookmark-desc">{entry.data.description}</p>
-          )}
-          <span class="bookmark-url">{new URL(entry.data.url).hostname}</span>
+          </span>
         </a>
       ))}
     </div>
@@ -116,46 +113,41 @@ const categories = ['all', 'tools', 'design', 'articles', 'misc'] as const;
   }
 
   .bookmark-item {
-    display: block;
-    padding: 1.5rem 0;
-    border-bottom: 1px solid var(--border);
-    text-decoration: none;
-    transition: opacity 0.15s;
-  }
-
-  .bookmark-item:hover {
-    opacity: 0.75;
-  }
-
-  .bookmark-top {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
     gap: 1rem;
-    margin-bottom: 0.375rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .bookmark-item:hover .bookmark-title {
+    color: var(--accent);
   }
 
   .bookmark-title {
     font-weight: 500;
     color: var(--foreground);
+    font-size: 0.875rem;
+  }
+
+  .bookmark-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-shrink: 0;
   }
 
   .bookmark-category {
     font-size: 0.75rem;
     color: var(--accent);
-    flex-shrink: 0;
-  }
-
-  .bookmark-desc {
-    font-size: 0.875rem;
-    color: var(--muted);
-    line-height: 1.6;
-    margin-bottom: 0.375rem;
   }
 
   .bookmark-url {
     font-size: 0.75rem;
-    color: var(--border);
+    color: var(--muted);
   }
 
   /* Empty state */

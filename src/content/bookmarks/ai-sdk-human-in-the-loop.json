@@ -1,0 +1,7 @@
+{
+	"$schema": "../../../.astro/collections/bookmarks.schema.json",
+	"title": "ai sdk — human in the loop",
+	"url": "https://ai-sdk.dev/cookbook/next/human-in-the-loop",
+	"category": "articles",
+	"date": "2026-05-11T00:00:00.000Z"
+}

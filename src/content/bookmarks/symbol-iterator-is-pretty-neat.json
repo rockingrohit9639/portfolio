@@ -1,0 +1,7 @@
+{
+	"$schema": "../../../.astro/collections/bookmarks.schema.json",
+	"title": "symbol.iterator is pretty neat actually",
+	"url": "https://kettanaito.com/blog/symbol-iterator-is-pretty-neat-actually",
+	"category": "articles",
+	"date": "2026-05-11T00:00:00.000Z"
+}

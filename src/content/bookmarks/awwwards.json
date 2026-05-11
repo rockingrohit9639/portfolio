@@ -1,0 +1,7 @@
+{
+	"$schema": "../../../.astro/collections/bookmarks.schema.json",
+	"title": "awwwards",
+	"url": "https://www.awwwards.com/",
+	"category": "design",
+	"date": "2026-05-11T00:00:00.000Z"
+}

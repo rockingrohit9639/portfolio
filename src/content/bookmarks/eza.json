@@ -1,0 +1,7 @@
+{
+	"$schema": "../../../.astro/collections/bookmarks.schema.json",
+	"title": "eza",
+	"url": "https://github.com/eza-community/eza",
+	"category": "tools",
+	"date": "2026-05-11T00:00:00.000Z"
+}
