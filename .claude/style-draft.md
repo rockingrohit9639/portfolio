@@ -3736,3 +3736,409 @@ const allTags = ['all', ...fixedTags];
 ```
 
 ---
+
+## File: /Users/cypher007/projects/portfolio/src/pages/gallery.astro (edit)
+
+**Before:**
+```
+  .gallery-main {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 6rem 1.5rem 6rem;
+  }
+```
+
+**After:**
+```
+  .gallery-main {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 6rem 1.5rem 6rem;
+  }
+```
+
+---
+
+## File: /Users/cypher007/projects/portfolio/src/pages/gallery.astro (edit)
+
+**Before:**
+```
+  .masonry-item img {
+    width: 100%;
+    max-height: 28rem;
+    display: block;
+    object-fit: cover;
+    filter: grayscale(20%);
+    transition: filter 0.2s, opacity 0.2s;
+  }
+```
+
+**After:**
+```
+  .masonry-item img {
+    width: 100%;
+    display: block;
+    filter: grayscale(20%);
+    transition: filter 0.2s, opacity 0.2s;
+  }
+```
+
+---
+
+## File: /Users/cypher007/projects/portfolio/src/pages/gallery.astro (edit)
+
+**Before:**
+```
+  .gallery-header {
+    margin-bottom: 2.5rem;
+  }
+```
+
+**After:**
+```
+  .gallery-header {
+    max-width: 48rem;
+    margin-bottom: 2.5rem;
+  }
+```
+
+---
+
+## File: /Users/cypher007/projects/portfolio/src/pages/gallery.astro (edit)
+
+**Before:**
+```
+  /* Filters */
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+  }
+```
+
+**After:**
+```
+  /* Filters */
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    max-width: 48rem;
+    margin-bottom: 2rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+  }
+```
+
+---
+
+## File: /Users/cypher007/projects/portfolio/src/pages/gallery.astro (edit)
+
+**Before:**
+```
+  .gallery-main {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 6rem 1.5rem 6rem;
+  }
+```
+
+**After:**
+```
+  .gallery-main {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 6rem 1.5rem 6rem;
+  }
+```
+
+---
+
+## File: /Users/cypher007/projects/portfolio/src/pages/gallery.astro (edit)
+
+**Before:**
+```
+  .gallery-header {
+    max-width: 48rem;
+    margin-bottom: 2.5rem;
+  }
+```
+
+**After:**
+```
+  .gallery-header {
+    margin-bottom: 2.5rem;
+  }
+```
+
+---
+
+## File: /Users/cypher007/projects/portfolio/src/pages/gallery.astro (edit)
+
+**Before:**
+```
+  /* Filters */
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    max-width: 48rem;
+    margin-bottom: 2rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+  }
+```
+
+**After:**
+```
+  /* Filters */
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+  }
+```
+
+---
+
+## File: /Users/cypher007/projects/portfolio/src/pages/gallery.astro (edit)
+
+**Before:**
+```
+  /* Masonry */
+  .masonry {
+    columns: 3;
+    column-gap: 0.75rem;
+  }
+```
+
+**After:**
+```
+  /* Masonry */
+  .masonry {
+    columns: 3;
+    column-gap: 0.75rem;
+    max-width: 72rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+```
+
+---
+
+## File: /Users/cypher007/projects/portfolio/src/pages/gallery.astro (edit)
+
+**Before:**
+```
+  /* Masonry */
+  .masonry {
+    columns: 3;
+    column-gap: 0.75rem;
+    max-width: 72rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+```
+
+**After:**
+```
+  /* Masonry */
+  .masonry {
+    columns: 3;
+    column-gap: 0.75rem;
+    width: 90vw;
+    max-width: 72rem;
+    margin-left: calc(50% - 45vw);
+  }
+
+  @media (min-width: 72rem) {
+    .masonry {
+      margin-left: calc(50% - 36rem);
+    }
+  }
+```
+
+---
+
+## File: /Users/cypher007/projects/portfolio/src/pages/gallery.astro (edit)
+
+**Before:**
+```
+  .masonry-item img {
+    width: 100%;
+    display: block;
+    filter: grayscale(20%);
+    transition: filter 0.2s, opacity 0.2s;
+  }
+```
+
+**After:**
+```
+  .masonry-item img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    filter: grayscale(20%);
+    transition: filter 0.2s, opacity 0.2s;
+  }
+```
+
+---
+
+## File: /Users/cypher007/projects/portfolio/src/pages/gallery.astro (edit)
+
+**Before:**
+```
+  .masonry-item {
+    break-inside: avoid;
+    margin-bottom: 0.75rem;
+  }
+
+  .masonry-item img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    filter: grayscale(20%);
+    transition: filter 0.2s, opacity 0.2s;
+  }
+```
+
+**After:**
+```
+  .masonry-item {
+    break-inside: avoid;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+  }
+
+  .masonry-item img {
+    width: 100%;
+    max-height: 24rem;
+    display: block;
+    object-fit: cover;
+    filter: grayscale(20%);
+    transition: filter 0.2s, opacity 0.2s;
+  }
+```
+
+---
+
+## File: /Users/cypher007/projects/portfolio/src/pages/gallery.astro (edit)
+
+**Before:**
+```
+  .masonry-item img {
+    width: 100%;
+    max-height: 24rem;
+    display: block;
+    object-fit: cover;
+    filter: grayscale(20%);
+    transition: filter 0.2s, opacity 0.2s;
+  }
+```
+
+**After:**
+```
+  .masonry-item img {
+    width: 100%;
+    display: block;
+    filter: grayscale(20%);
+    transition: filter 0.2s, opacity 0.2s;
+  }
+```
+
+---
+
+## File: /Users/cypher007/projects/portfolio/src/pages/gallery.astro (edit)
+
+**Before:**
+```
+  /* Masonry */
+  .masonry {
+    columns: 3;
+    column-gap: 0.75rem;
+    width: 90vw;
+    max-width: 72rem;
+    margin-left: calc(50% - 45vw);
+  }
+
+  @media (min-width: 72rem) {
+    .masonry {
+      margin-left: calc(50% - 36rem);
+    }
+  }
+```
+
+**After:**
+```
+  /* Masonry */
+  .masonry {
+    columns: 4;
+    column-gap: 0.5rem;
+    width: 90vw;
+    max-width: 72rem;
+    margin-left: calc(50% - 45vw);
+  }
+
+  @media (min-width: 72rem) {
+    .masonry {
+      margin-left: calc(50% - 36rem);
+    }
+  }
+```
+
+---
+
+## File: /Users/cypher007/projects/portfolio/src/pages/gallery.astro (edit)
+
+**Before:**
+```
+  .masonry-item {
+    break-inside: avoid;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+  }
+```
+
+**After:**
+```
+  .masonry-item {
+    break-inside: avoid;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+```
+
+---
+
+## File: /Users/cypher007/projects/portfolio/src/pages/gallery.astro (edit)
+
+**Before:**
+```
+  .masonry-item img {
+    width: 100%;
+    display: block;
+    filter: grayscale(20%);
+    transition: filter 0.2s, opacity 0.2s;
+  }
+```
+
+**After:**
+```
+  .masonry-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: grayscale(20%);
+    transition: filter 0.2s, opacity 0.2s;
+  }
+```
+
+---
