@@ -7,7 +7,7 @@ const imageFiles = import.meta.glob<{ default: ImageMetadata }>(
   { eager: true }
 );
 
-const fixedTags = ['nature', 'urban', 'abstract', 'misc'] as const;
+const fixedTags = ['nature', 'urban', 'abstract', 'mountains', 'misc'] as const;
 
 const images = Object.entries(imageFiles).map(([path, mod]) => {
   const filename = path.split('/').pop()!;
@@ -16,7 +16,7 @@ const images = Object.entries(imageFiles).map(([path, mod]) => {
   return { src: mod.default, tags: tags.length > 0 ? tags : ['misc'] };
 });
 
-const allTags = ['all', ...fixedTags];
+const allTags = [...fixedTags];
 ---
 
 <Layout>
@@ -33,7 +33,7 @@ const allTags = ['all', ...fixedTags];
       <>
         <div class="filter-bar">
           {allTags.map((tag) => (
-            <button class="filter-btn" data-tag={tag} data-active={tag === 'all' ? 'true' : undefined}>
+            <button class="filter-btn" data-tag={tag} data-active={tag === 'nature' ? 'true' : undefined}>
               {tag}
             </button>
           ))}
@@ -300,15 +300,26 @@ const allTags = ['all', ...fixedTags];
   const btns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
   const items = document.querySelectorAll<HTMLElement>('.masonry-item');
 
+  items.forEach((item) => {
+    const tags = item.dataset.tags?.split(',') ?? [];
+    if (!tags.includes('nature')) item.classList.add('hidden');
+  });
+
   btns.forEach((btn) => {
     btn.addEventListener('click', () => {
+      const wasActive = btn.getAttribute('data-active') === 'true';
       btns.forEach((b) => b.removeAttribute('data-active'));
-      btn.setAttribute('data-active', 'true');
 
+      if (wasActive) {
+        items.forEach((item) => item.classList.remove('hidden'));
+        return;
+      }
+
+      btn.setAttribute('data-active', 'true');
       const tag = btn.dataset.tag!;
       items.forEach((item) => {
         const tags = item.dataset.tags?.split(',') ?? [];
-        if (tag === 'all' || tags.includes(tag)) {
+        if (tags.includes(tag)) {
           item.classList.remove('hidden');
         } else {
           item.classList.add('hidden');
