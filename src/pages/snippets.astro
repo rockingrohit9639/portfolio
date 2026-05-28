@@ -24,6 +24,7 @@ const snippets = all.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf(
               <div class="snippet-actions">
                 <span class="snippet-lang">{entry.data.language}</span>
                 <button class="copy-btn" aria-label="copy code">copy</button>
+                <button class="share-btn" aria-label="share snippet as image">share</button>
               </div>
             </div>
             <div class="snippet-code">
@@ -95,7 +96,8 @@ const snippets = all.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf(
     color: var(--accent);
   }
 
-  .copy-btn {
+  .copy-btn,
+  .share-btn {
     font-family: inherit;
     font-size: 0.75rem;
     color: var(--muted);
@@ -107,12 +109,14 @@ const snippets = all.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf(
     opacity: 0.5;
   }
 
-  .copy-btn:hover {
+  .copy-btn:hover,
+  .share-btn:hover {
     color: var(--foreground);
     opacity: 1;
   }
 
-  .copy-btn.copied {
+  .copy-btn.copied,
+  .share-btn.shared {
     color: var(--accent);
     opacity: 1;
   }
@@ -137,6 +141,8 @@ const snippets = all.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf(
 </style>
 
 <script>
+  import { toPng } from 'html-to-image';
+
   document.querySelectorAll<HTMLButtonElement>('.copy-btn').forEach((btn) => {
     btn.addEventListener('click', async () => {
       const code = btn.closest('.snippet-entry')?.querySelector('pre')?.innerText ?? '';
@@ -149,6 +155,73 @@ const snippets = all.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf(
           btn.classList.remove('copied');
         }, 2000);
       }
+    });
+  });
+
+  document.querySelectorAll<HTMLButtonElement>('.share-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const entry = btn.closest('.snippet-entry');
+      if (!entry) return;
+
+      const title = entry.querySelector('.snippet-title')?.textContent ?? 'snippet';
+      const codeBlock = entry.querySelector('.snippet-code') as HTMLElement | null;
+      if (!codeBlock) return;
+
+      btn.textContent = '...';
+
+      const clone = codeBlock.cloneNode(true) as HTMLElement;
+      const label = document.createElement('div');
+      label.textContent = title;
+      label.style.cssText = `
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        color: var(--muted);
+        padding: 1rem 1.25rem 0;
+      `;
+
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = `
+        background: var(--code-background);
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        padding-bottom: 0.25rem;
+        width: fit-content;
+        min-width: 400px;
+        max-width: 700px;
+      `;
+
+      const pre = clone.querySelector('pre') as HTMLElement | null;
+      if (pre) {
+        pre.style.border = 'none';
+        pre.style.margin = '0';
+      }
+
+      wrapper.appendChild(label);
+      wrapper.appendChild(clone);
+      document.body.appendChild(wrapper);
+
+      try {
+        const dataUrl = await toPng(wrapper, { pixelRatio: 2 });
+        document.body.removeChild(wrapper);
+
+        const res = await fetch(dataUrl);
+        const blob = await res.blob();
+
+        await navigator.clipboard.write([
+          new ClipboardItem({ 'image/png': blob }),
+        ]);
+
+        btn.textContent = 'shared!';
+        btn.classList.add('shared');
+      } catch {
+        document.body.removeChild(wrapper);
+        btn.textContent = 'failed';
+      }
+
+      setTimeout(() => {
+        btn.textContent = 'share';
+        btn.classList.remove('shared');
+      }, 2000);
     });
   });
 </script>
