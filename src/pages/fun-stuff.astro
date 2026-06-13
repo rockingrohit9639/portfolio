@@ -1,0 +1,80 @@
+---
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fun stuff — rohit saini</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body { height: 100%; overflow: hidden; background: #000; font-family: 'IBM Plex Mono', monospace; }
+      canvas { position: fixed; inset: 0; width: 100%; height: 100%; }
+      .back-link {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 30;
+        font-size: 0.7rem;
+        color: #71717a;
+        text-decoration: none;
+        transition: color 0.15s;
+      }
+      .back-link:hover { color: #d4d4d8; }
+      #drop-zone {
+        position: fixed;
+        inset: 0;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0,0,0,0.9);
+        gap: 0.5rem;
+        transition: opacity 0.3s;
+      }
+      #drop-zone.hidden { display: none; }
+      #drop-zone p { color: #a1a1aa; font-size: 0.875rem; }
+      #drop-zone p:last-child { color: #52525b; font-size: 0.75rem; }
+      #file-btn {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 30;
+        padding: 0.375rem 0.75rem;
+        font-size: 0.65rem;
+        font-family: 'IBM Plex Mono', monospace;
+        color: #71717a;
+        background: rgba(24,24,27,0.8);
+        border: 1px solid #3f3f46;
+        border-radius: 0.25rem;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+      }
+      #file-btn:hover { color: #d4d4d8; border-color: #71717a; }
+      #file-btn.hidden { display: none; }
+    </style>
+  </head>
+  <body>
+    <a href="/" class="back-link">← back</a>
+    <canvas id="canvas"></canvas>
+
+    <div id="drop-zone">
+      <p>click anywhere to start with mic</p>
+      <p>or drop an audio file anywhere</p>
+    </div>
+
+    <button id="file-btn" class="hidden">load audio</button>
+    <input type="file" id="file-input" accept="audio/*" style="display:none" />
+
+    <script>
+      import { initVisualizer } from '../lib/visualizer/main';
+      initVisualizer();
+    </script>
+  </body>
+</html>

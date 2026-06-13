@@ -15,12 +15,16 @@
     "check": "biome check --write ."
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.2",
-    "astro": "^6.1.9",
+    "@astrojs/sitemap": "^3.7.3",
+    "astro": "^6.4.6",
     "html-to-image": "^1.11.13",
-    "sharp": "^0.34.5"
+    "lil-gui": "^0.21.0",
+    "postprocessing": "^6.39.1",
+    "sharp": "^0.34.5",
+    "three": "^0.184.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.13"
+    "@biomejs/biome": "^2.4.13",
+    "@types/three": "^0.184.1"
   }
 }
